@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio - Análisis de Publicidad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .projects-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #4a5568;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-card h3 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .project-card p {
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .insights {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .insights h4 {
+            color: #234e52;
+            margin-bottom: 8px;
+        }
+
+        .insights ul {
+            color: #2d3748;
+            padding-left: 20px;
+        }
+
+        .powerbi-embed {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .placeholder-embed {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tu Nombre</h1>
+            <p>Especialista en Análisis de Datos de Publicidad y Marketing Digital</p>
+            <div class="contact-info">
+                <div class="contact-item">📧 tu.email@ejemplo.com</div>
+                <div class="contact-item">💼 LinkedIn</div>
+                <div class="contact-item">📱 +52 XX XXXX XXXX</div>
+            </div>
+        </header>
+
+        <div class="projects-section">
+            <h2 class="section-title">Mis Análisis de Publicidad</h2>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>
+                        <div class="project-icon">1</div>
+                        Análisis de Competencia - Sector Automotriz
+                    </h3>
+                    <p>Estudio comparativo de estrategias publicitarias entre las principales marcas automotrices, analizando inversión, reach y engagement en diferentes plataformas digitales.</p>
+                    
+                    <div class="insights">
+                        <h4>💡 Insights Principales:</h4>
+                        <ul>
+                            <li>Toyota lidera en inversión digital con 45% más que sus competidores</li>
+                            <li>Facebook Ads genera 3x mejor ROI que Google Ads en este sector</li>
+                            <li>Los videos de 15 segundos tienen 67% más engagement</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Aquí irá tu reporte de Power BI -->
+                    <div class="placeholder-embed">
+                        <div>
+                            <strong>Tu Reporte de Power BI aquí</strong><br>
+                            Reemplaza este div con tu código iframe de Power BI
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>
+                        <div class="project-icon">2</div>
+                        Dashboard de Rendimiento - E-commerce
+                    </h3>
+                    <p>Análisis completo del rendimiento publicitario de tiendas online, comparando métricas de conversión, CAC y LTV por canal de adquisición.</p>
+                    
+                    <div class="insights">
+                        <h4>💡 Insights Principales:</h4>
+                        <ul>
+                            <li>Instagram Shopping redujo el CAC en 34% vs otros canales</li>
+                            <li>Los clientes de email marketing tienen 2.5x mayor LTV</li>
+                            <li>Peak de conversiones entre 8-10 PM los fines de semana</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="placeholder-embed">
+                        <div>
+                            <strong>Tu Reporte de Power BI aquí</strong><br>
+                            Reemplaza este div con tu código iframe de Power BI
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>
+                        <div class="project-icon">3</div>
+                        Estudio de Audiencias - Sector Alimentario
+                    </h3>
+                    <p>Segmentación avanzada de audiencias para marcas de alimentos, identificando patrones de consumo y preferencias publicitarias por demografía.</p>
+                    
+                    <div class="insights">
+                        <h4>💡 Insights Principales:</h4>
+                        <ul>
+                            <li>Millennials prefieren video-recetas vs fotos estáticas (78% vs 22%)</li>
+                            <li>TikTok supera a Instagram en engagement para Gen Z</li>
+                            <li>Productos saludables tienen 5x mejor rendimiento en LinkedIn</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="placeholder-embed">
+                        <div>
+                            <strong>Tu Reporte de Power BI aquí</strong><br>
+                            Reemplaza este div con tu código iframe de Power BI
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>
+                        <div class="project-icon">4</div>
+                        Optimización de Campañas SEM
+                    </h3>
+                    <p>Análisis de performance de campañas de búsqueda pagada, optimización de keywords y mejora del Quality Score para múltiples clientes.</p>
+                    
+                    <div class="insights">
+                        <h4>💡 Insights Principales:</h4>
+                        <ul>
+                            <li>Palabras long-tail generan 2.3x mejor conversión</li>
+                            <li>Ad extensions aumentan CTR en promedio 15%</li>
+                            <li>Horarios 9 AM - 12 PM tienen mejor costo por conversión</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="placeholder-embed">
+                        <div>
+                            <strong>Tu Reporte de Power BI aquí</strong><br>
+                            Reemplaza este div con tu código iframe de Power BI
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>¿Interesado en trabajar juntos?</h2>
+            <p>Especializo en convertir datos de publicidad en insights accionables que impulsan el crecimiento de tu negocio.</p>
+            <a href="mailto:tu.email@ejemplo.com" class="btn">Contactáme</a>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animación de aparición de cards al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas las tarjetas de proyecto
+        document.querySelectorAll('.project-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
