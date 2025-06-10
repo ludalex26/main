@@ -14,9 +14,223 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #013D5A;
+            background: linear-gradient(135deg, #708C69 0%, #013D5A 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Data Sidebar */
+        .floating-stats {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(252, 243, 227, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(1, 61, 90, 0.2);
+            z-index: 1000;
+            width: 200px;
+            border: 1px solid rgba(244, 162, 88, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .floating-stats:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 15px 40px rgba(1, 61, 90, 0.3);
+        }
+
+        .floating-stats h4 {
+            color: #013D5A;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.8em;
+        }
+
+        .stat-label {
+            color: #708C69;
+        }
+
+        .stat-value {
+            color: #F4A258;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Parallax Background Elements */
+        .bg-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-icon {
+            position: absolute;
+            color: rgba(244, 162, 88, 0.1);
+            font-size: 3em;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bg-icon:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .bg-icon:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .bg-icon:nth-child(3) { top: 40%; left: 15%; animation-delay: 2s; }
+        .bg-icon:nth-child(4) { top: 60%; right: 20%; animation-delay: 3s; }
+        .bg-icon:nth-child(5) { top: 80%; left: 10%; animation-delay: 4s; }
+        .bg-icon:nth-child(6) { top: 70%; right: 5%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Professional Photo Section */
+        .photo-section {
+            background: rgba(252, 243, 227, 0.95);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(1, 61, 90, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 150%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(189, 211, 206, 0.3), rgba(112, 140, 105, 0.2));
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .photo-container {
+            flex: 0 0 300px;
+            height: 300px;
+            position: relative;
+            z-index: 2;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .professional-illustration {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #BDD3CE 0%, #708C69 100%);
+            border-radius: 50% 30% 50% 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: morphing 8s ease-in-out infinite;
+            box-shadow: 0 20px 40px rgba(1, 61, 90, 0.2);
+        }
+
+        @keyframes morphing {
+            0%, 100% { border-radius: 50% 30% 50% 30%; transform: rotate(0deg); }
+            25% { border-radius: 30% 50% 30% 50%; transform: rotate(2deg); }
+            50% { border-radius: 50% 30% 50% 30%; transform: rotate(-1deg); }
+            75% { border-radius: 30% 50% 30% 50%; transform: rotate(1deg); }
+        }
+
+        .illustration-content {
+            text-align: center;
+            color: #013D5A;
+            position: relative;
+            z-index: 3;
+        }
+
+        .illustration-content .avatar {
+            font-size: 4em;
+            margin-bottom: 10px;
+            display: block;
+            filter: drop-shadow(0 5px 10px rgba(1, 61, 90, 0.3));
+        }
+
+        .illustration-content .title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #FCF3E3;
+            text-shadow: 0 2px 4px rgba(1, 61, 90, 0.5);
+        }
+
+        .photo-content {
+            flex: 1;
+            color: #013D5A;
+            position: relative;
+            z-index: 2;
+        }
+
+        .photo-content h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #013D5A;
+        }
+
+        .photo-content p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #708C69;
+            margin-bottom: 20px;
+        }
+
+        .skills-bar {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #013D5A;
+        }
+
+        .skill-progress {
+            height: 8px;
+            background: #BDD3CE;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #F4A258 0%, #708C69 100%);
+            border-radius: 4px;
+            transition: width 2s ease-in-out;
+            width: 0;
+        }
+
+        /* Counter Animation */
+        .counter {
+            display: inline-block;
+            font-weight: bold;
+            color: #F4A258;
         }
 
         .container {
@@ -70,16 +284,16 @@
         }
 
         .projects-section {
-            background: white;
+            background: #FCF3E3;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(1, 61, 90, 0.1);
             margin-bottom: 40px;
         }
 
         .section-title {
             font-size: 2.5em;
-            color: #4a5568;
+            color: #013D5A;
             text-align: center;
             margin-bottom: 50px;
             position: relative;
@@ -93,7 +307,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #F4A258 0%, #708C69 100%);
             border-radius: 2px;
         }
 
@@ -105,21 +319,22 @@
         }
 
         .project-card {
-            background: #f8f9fa;
+            background: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(1, 61, 90, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #BDD3CE;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(1, 61, 90, 0.15);
+            border: 1px solid #F4A258;
         }
 
         .project-card h3 {
-            color: #2d3748;
+            color: #013D5A;
             font-size: 1.5em;
             margin-bottom: 15px;
             display: flex;
@@ -130,7 +345,7 @@
         .project-icon {
             width: 30px;
             height: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #F4A258 0%, #708C69 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -140,26 +355,26 @@
         }
 
         .project-card p {
-            color: #4a5568;
+            color: #708C69;
             margin-bottom: 20px;
             line-height: 1.6;
         }
 
         .insights {
-            background: #e6fffa;
-            border-left: 4px solid #38b2ac;
+            background: rgba(244, 162, 88, 0.1);
+            border-left: 4px solid #F4A258;
             padding: 15px;
             margin: 15px 0;
             border-radius: 0 10px 10px 0;
         }
 
         .insights h4 {
-            color: #234e52;
+            color: #013D5A;
             margin-bottom: 8px;
         }
 
         .insights ul {
-            color: #2d3748;
+            color: #708C69;
             padding-left: 20px;
         }
 
@@ -175,7 +390,7 @@
         .placeholder-embed {
             width: 100%;
             height: 400px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #F4A258 0%, #708C69 100%);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -187,7 +402,7 @@
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #013D5A 0%, #708C69 100%);
             color: white;
             text-align: center;
             padding: 60px 40px;
@@ -208,19 +423,20 @@
 
         .btn {
             display: inline-block;
-            background: white;
-            color: #667eea;
+            background: #F4A258;
+            color: white;
             padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(244, 162, 88, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(244, 162, 88, 0.4);
+            background: #e6935a;
         }
 
         @keyframes fadeInUp {
@@ -251,21 +467,133 @@
             .projects-section {
                 padding: 20px;
             }
+
+            .floating-stats {
+                display: none;
+            }
+
+            .photo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .photo-container {
+                flex: none;
+            }
+
+            .bg-icons {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Floating Background Icons -->
+        <div class="bg-icons">
+            <div class="bg-icon">📊</div>
+            <div class="bg-icon">📈</div>
+            <div class="bg-icon">💻</div>
+            <div class="bg-icon">🔍</div>
+            <div class="bg-icon">⚡</div>
+            <div class="bg-icon">🎯</div>
+        </div>
+
+        <!-- Floating Stats Sidebar -->
+        <div class="floating-stats">
+            <h4>Live Stats</h4>
+            <div class="stat-item">
+                <span class="stat-label">Experiencia</span>
+                <span class="stat-value"><span class="counter" data-target="7">0</span>+ años</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Proyectos</span>
+                <span class="stat-value"><span class="counter" data-target="50">0</span>+</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Clientes</span>
+                <span class="stat-value"><span class="counter" data-target="25">0</span>+</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Dashboards</span>
+                <span class="stat-value"><span class="counter" data-target="100">0</span>+</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">ROI Avg</span>
+                <span class="stat-value"><span class="counter" data-target="30">0</span>%</span>
+            </div>
+        </div>
+
         <header>
             <h1>Ludwig Alejandro Domínguez Romo</h1>
             <p>Senior Data Scientist | Especialista en Business Intelligence y Analytics de Medios</p>
             <div class="contact-info">
                 <div class="contact-item">📧 aledomrom@outlook.com</div>
-                <div class="contact-item">💼 LinkedIn</div>
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/ludwig-alejandro-dominguez-romo-mxedomex" target="_blank" style="color: inherit; text-decoration: none;">
+                        💼 LinkedIn
+                    </a>
+                </div>
                 <div class="contact-item">📱 +52 56-11-58-18-41</div>
                 <div class="contact-item">📍 Cuautitlán, Estado de México</div>
             </div>
         </header>
+
+        <!-- Professional Photo Section -->
+        <div class="photo-section">
+            <div class="photo-container">
+                <div class="professional-illustration">
+                    <div class="illustration-content">
+                        <span class="avatar">👨‍💼</span>
+                        <div class="title">Data Scientist</div>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-content">
+                <h2>Senior Data Scientist</h2>
+                <p>Con más de 7 años transformando datos complejos en insights estratégicos para empresas Fortune 500. Especializado en optimización de medios digitales, business intelligence y análisis predictivo.</p>
+                
+                <div class="skills-bar">
+                    <div class="skill-name">
+                        <span>Power BI & Tableau</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" data-width="95"></div>
+                    </div>
+                </div>
+                
+                <div class="skills-bar">
+                    <div class="skill-name">
+                        <span>SQL & Python</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" data-width="90"></div>
+                    </div>
+                </div>
+                
+                <div class="skills-bar">
+                    <div class="skill-name">
+                        <span>Alteryx & ETL</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" data-width="88"></div>
+                    </div>
+                </div>
+                
+                <div class="skills-bar">
+                    <div class="skill-name">
+                        <span>Media Analytics</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" data-width="92"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="projects-section">
             <h2 class="section-title">Proyectos de Business Intelligence & Analytics</h2>
@@ -373,49 +701,49 @@
             <h2 class="section-title">Stack Tecnológico & Expertise</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
-                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(1, 61, 90, 0.1); border: 1px solid #BDD3CE;">
                     <div style="font-size: 3em; margin-bottom: 15px;">📊</div>
-                    <h3 style="color: #2d3748; margin-bottom: 15px;">Visualización</h3>
-                    <p style="color: #4a5568;">Power BI • Tableau • Excel Advanced</p>
+                    <h3 style="color: #013D5A; margin-bottom: 15px;">Visualización</h3>
+                    <p style="color: #708C69;">Power BI • Tableau • Excel Advanced</p>
                 </div>
                 
-                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(1, 61, 90, 0.1); border: 1px solid #BDD3CE;">
                     <div style="font-size: 3em; margin-bottom: 15px;">🔧</div>
-                    <h3 style="color: #2d3748; margin-bottom: 15px;">ETL & Analytics</h3>
-                    <p style="color: #4a5568;">Alteryx • SQL • Python</p>
+                    <h3 style="color: #013D5A; margin-bottom: 15px;">ETL & Analytics</h3>
+                    <p style="color: #708C69;">Alteryx • SQL • Python</p>
                 </div>
                 
-                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(1, 61, 90, 0.1); border: 1px solid #BDD3CE;">
                     <div style="font-size: 3em; margin-bottom: 15px;">⚡</div>
-                    <h3 style="color: #2d3748; margin-bottom: 15px;">Metodologías</h3>
-                    <p style="color: #4a5568;">SCRUM • JIRA • Agile</p>
+                    <h3 style="color: #013D5A; margin-bottom: 15px;">Metodologías</h3>
+                    <p style="color: #708C69;">SCRUM • JIRA • Agile</p>
                 </div>
                 
-                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(1, 61, 90, 0.1); border: 1px solid #BDD3CE;">
                     <div style="font-size: 3em; margin-bottom: 15px;">🎯</div>
-                    <h3 style="color: #2d3748; margin-bottom: 15px;">Especialización</h3>
-                    <p style="color: #4a5568;">Media Analytics • Financial BI • Audience Insights</p>
+                    <h3 style="color: #013D5A; margin-bottom: 15px;">Especialización</h3>
+                    <p style="color: #708C69;">Media Analytics • Financial BI • Audience Insights</p>
                 </div>
             </div>
             
-            <div style="background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%); border-radius: 15px; padding: 30px; margin-bottom: 30px;">
-                <h3 style="color: #234e52; margin-bottom: 20px; text-align: center;">🏆 Experiencia Destacada</h3>
+            <div style="background: linear-gradient(135deg, rgba(244, 162, 88, 0.1) 0%, rgba(189, 211, 206, 0.1) 100%); border-radius: 15px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(244, 162, 88, 0.2);">
+                <h3 style="color: #013D5A; margin-bottom: 20px; text-align: center;">🏆 Experiencia Destacada</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
                     <div>
-                        <div style="font-size: 2em; color: #38b2ac; font-weight: bold;">7+</div>
-                        <div style="color: #2d3748;">Años de Experiencia</div>
+                        <div style="font-size: 2em; color: #F4A258; font-weight: bold;">7+</div>
+                        <div style="color: #708C69;">Años de Experiencia</div>
                     </div>
                     <div>
-                        <div style="font-size: 2em; color: #38b2ac; font-weight: bold;">Fortune 500</div>
-                        <div style="color: #2d3748;">Clientes Atendidos</div>
+                        <div style="font-size: 2em; color: #F4A258; font-weight: bold;">Fortune 500</div>
+                        <div style="color: #708C69;">Clientes Atendidos</div>
                     </div>
                     <div>
-                        <div style="font-size: 2em; color: #38b2ac; font-weight: bold;">3</div>
-                        <div style="color: #2d3748;">Países (MX, US)</div>
+                        <div style="font-size: 2em; color: #F4A258; font-weight: bold;">2</div>
+                        <div style="color: #708C69;">Países (MX, US)</div>
                     </div>
                     <div>
-                        <div style="font-size: 2em; color: #38b2ac; font-weight: bold;">Bilingüe</div>
-                        <div style="color: #2d3748;">ES | EN</div>
+                        <div style="font-size: 2em; color: #F4A258; font-weight: bold;">Bilingüe</div>
+                        <div style="color: #708C69;">ES | EN</div>
                     </div>
                 </div>
             </div>
@@ -439,6 +767,65 @@
             });
         });
 
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    counter.textContent = Math.floor(current);
+                    
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 16);
+            });
+        }
+
+        // Skill bars animation
+        function animateSkillBars() {
+            const skillFills = document.querySelectorAll('.skill-fill');
+            
+            skillFills.forEach(fill => {
+                const width = fill.getAttribute('data-width');
+                setTimeout(() => {
+                    fill.style.width = width + '%';
+                }, 500);
+            });
+        }
+
+        // Parallax effect for background icons
+        function parallaxEffect() {
+            const icons = document.querySelectorAll('.bg-icon');
+            const scrolled = window.pageYOffset;
+            
+            icons.forEach((icon, index) => {
+                const rate = scrolled * -0.5 * (index + 1) * 0.1;
+                icon.style.transform = `translateY(${rate}px) rotate(${scrolled * 0.05}deg)`;
+            });
+        }
+
+        // Floating stats hide/show based on scroll
+        function handleFloatingStats() {
+            const floatingStats = document.querySelector('.floating-stats');
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 300) {
+                floatingStats.style.opacity = '1';
+                floatingStats.style.transform = 'translateY(-50%) translateX(0)';
+            } else {
+                floatingStats.style.opacity = '0.7';
+                floatingStats.style.transform = 'translateY(-50%) translateX(20px)';
+            }
+        }
+
         // Animación de aparición de cards al hacer scroll
         const observerOptions = {
             threshold: 0.1,
@@ -450,6 +837,12 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger animations when photo section is visible
+                    if (entry.target.classList.contains('photo-section')) {
+                        animateCounters();
+                        animateSkillBars();
+                    }
                 }
             });
         }, observerOptions);
@@ -460,6 +853,22 @@
             card.style.transform = 'translateY(30px)';
             card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
             observer.observe(card);
+        });
+
+        // Observar la sección de foto para activar animaciones
+        observer.observe(document.querySelector('.photo-section'));
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            parallaxEffect();
+            handleFloatingStats();
+        });
+
+        // Initialize floating stats position
+        document.addEventListener('DOMContentLoaded', () => {
+            const floatingStats = document.querySelector('.floating-stats');
+            floatingStats.style.opacity = '0.7';
+            floatingStats.style.transform = 'translateY(-50%) translateX(20px)';
         });
     </script>
 </body>
