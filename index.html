@@ -11,6 +11,50 @@
             box-sizing: border-box;
         }
 
+        /* Circle transition variables */
+        :root {
+            --circle-top-right-out: circle(0% at top right);
+            --circle-bottom-right-in: circle(150% at bottom right);
+            --transition__duration: 1s;
+            --transition__easing: ease-in-out;
+        }
+
+        /* Circle swoop animations */
+        @keyframes in-circle-swoop {
+            from {
+                clip-path: var(--circle-top-right-out);
+            }
+            to {
+                clip-path: var(--circle-bottom-right-in);
+            }
+        }
+
+        [transition-style="in:custom:circle-swoop"] {
+            --transition__duration: 5s;
+            animation-name: in-circle-swoop;
+            animation-duration: var(--transition__duration);
+            animation-timing-function: var(--transition__easing);
+            animation-fill-mode: both;
+        }
+
+        @keyframes out-circle-swoop {
+            from {
+                clip-path: var(--circle-bottom-right-in);
+            }
+            to {
+                clip-path: var(--circle-top-right-out);
+            }
+        }
+
+        [transition-style="out:custom:circle-swoop"] {
+            --transition__duration: 1.25s;
+            --transition__easing: cubic-bezier(.30, 1, .25, 1);
+            animation-name: out-circle-swoop;
+            animation-duration: var(--transition__duration);
+            animation-timing-function: var(--transition__easing);
+            animation-fill-mode: both;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -540,7 +584,7 @@
         </header>
 
         <!-- Professional Photo Section -->
-        <div class="photo-section">
+        <div class="photo-section" transition-style="in:custom:circle-swoop">
             <div class="photo-container">
                 <div class="professional-illustration">
                     <div class="illustration-content">
@@ -595,7 +639,7 @@
             </div>
         </div>
 
-        <div class="projects-section">
+        <div class="projects-section" transition-style="in:custom:circle-swoop">
             <h2 class="section-title">Proyectos de Business Intelligence & Analytics</h2>
             
             <div class="project-grid">
@@ -697,7 +741,7 @@
             </div>
         </div>
 
-        <div class="projects-section">
+        <div class="projects-section" transition-style="in:custom:circle-swoop">
             <h2 class="section-title">Stack Tecnológico & Expertise</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
@@ -826,6 +870,36 @@
             }
         }
 
+        // Circle swoop animation controller
+        function initCircleSwoopAnimations() {
+            const elementsWithCircleSwoop = document.querySelectorAll('[transition-style*="circle-swoop"]');
+            
+            const circleObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Reset any existing animation
+                        entry.target.style.animation = 'none';
+                        entry.target.offsetHeight; // Trigger reflow
+                        
+                        // Start the circle swoop animation
+                        const transitionStyle = entry.target.getAttribute('transition-style');
+                        if (transitionStyle.includes('in:custom:circle-swoop')) {
+                            entry.target.style.animation = 'in-circle-swoop var(--transition__duration) var(--transition__easing) forwards';
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            elementsWithCircleSwoop.forEach(element => {
+                // Set initial state
+                element.style.clipPath = 'var(--circle-top-right-out)';
+                circleObserver.observe(element);
+            });
+        }
+
         // Animación de aparición de cards al hacer scroll
         const observerOptions = {
             threshold: 0.1,
@@ -869,6 +943,9 @@
             const floatingStats = document.querySelector('.floating-stats');
             floatingStats.style.opacity = '0.7';
             floatingStats.style.transform = 'translateY(-50%) translateX(20px)';
+            
+            // Initialize circle swoop animations
+            initCircleSwoopAnimations();
         });
     </script>
 </body>
